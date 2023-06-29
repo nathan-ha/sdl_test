@@ -1,13 +1,13 @@
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
+#include <string>
 
 struct window {
-    int width, height;
     SDL_Window* container;
     SDL_Surface* window_surface;
 
     // creates sdl window
-    window(int width, int height);
+    window(int width, int height, const char* name = "");
     ~window();
 
     // loops in order to keep window from closing immediately
@@ -15,7 +15,7 @@ struct window {
     template <typename T> void loop(T fn());
     
     // loops in order to keep window from closing immediately
-    void loop();
+    void run_until_quit();
 };
 
 template <typename T> 
