@@ -6,8 +6,11 @@ struct window {
     SDL_Window* container;
     SDL_Surface* window_surface;
 
-    // creates sdl window
+    // initializes sdl window and surface
     window(int width, int height, const char* name = "");
+
+    // frees memory for window and surface
+    // any other memory must be freed yourself
     ~window();
 
     // loops in order to keep window from closing immediately
@@ -22,7 +25,7 @@ template <typename T>
 void window::loop(T fn()) {
     SDL_Event event;
     while (true) {
-        while (SDL_PollEvent(&event)) {
+        while (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) return;
             fn();
         }
