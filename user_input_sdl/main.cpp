@@ -14,7 +14,7 @@ int main() {
     SDL_FillRect(w.window_surface, nullptr, SDL_MapRGB(w.window_surface->format, 255, 255, 255));
     SDL_UpdateWindowSurface(w.container);
 
-    load_images();
+    load_images(w);
 
     loop(w);
 
